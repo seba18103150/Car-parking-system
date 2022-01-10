@@ -28,34 +28,26 @@
   </div>
 
   <div class="mb-3">
-  <label for="exampleInputPassword1" class="form-label">Selected Slot Number</label>
+  <label for="exampleInputPassword1" class="form-label">Selected Slot Name</label>
   <select name="slot_number_id" class="form-control" id="exampleInputPassword1">
-@foreach ($slots as $slot)
+      @foreach ($slots as $slot)
 
-<option value="{{$slot->id}}">{{$slot->id}}</option>
-@endforeach
+      <option value="{{$slot->id}}">{{$slot->name}}</option>
+      @endforeach
 </select>
 <!-- </select> -->
   </div>
 
 
-  <div class="mb-3">
+  <!-- <div class="mb-3">
     <label for="exampleInputPassword1" class="form-label">park</label>
-<!-- <select name="parking" id="">
-@foreach ($slots as $slot)
-<option value="{{$slot->id}}">{{$slot->id}}</option>
-@endforeach
-</select> -->
     <input name="parking" type="integer" class="form-control" id="exampleInputPassword1">
-  </div>
+  </div> -->
   <!-- <div class="mb-3">
     <label for="exampleInputPassword1" class="form-label">driver</label>
     <input name="out" type="datetime" class="form-control" id="exampleInputPassword1">
   </div> -->
-  <!-- <div class="mb-3 form-check">
-    <input  type="checkbox" class="form-check-input" id="exampleCheck1">
-    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-  </div> -->
+  
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 

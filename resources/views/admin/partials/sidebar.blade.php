@@ -20,17 +20,15 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <!-- <div class="sb-sidenav-menu-heading">Core</div> -->
-                            <a class="nav-link" href="{{url('/Admin')}}">
-
+                            <!-- <a class="nav-link" href="{{url('/Admin')}}"> -->
 
                             <!-- <div class="sb-sidenav-menu-heading"></div> -->
-                            <a class="nav-link" href="{{url('/ ')}}">
+                            <a class="nav-link" href="{{route('vehical.dashboard')}}">
 
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
                             </a>
                         </div>
-                        
                         
                         
                         <div class="nav">
@@ -54,6 +52,13 @@
                             <a class="nav-link" href="{{route('admin.vehical')}}"> 
                                 <div class="sb-nav-link-icon"><i class="fas fa-car-side"></i></div>
                                parking 
+                            </a>
+                        </div>
+                        <div class="nav">
+                             <!-- <div class="sb-sidenav-menu-heading"></div> -->
+                            <a class="nav-link" href="{{route('vehical.parking.new')}}"> 
+                                <div class="sb-nav-link-icon"><i class="fas fa-car-side"></i></div>
+                              New parking
                             </a>
                         </div>
 

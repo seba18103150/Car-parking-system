@@ -13,6 +13,10 @@ class ParckingVehical extends Model
 
     public function parkingslot()
     {
-        return $this->belongsTo(parkingslot::class);
+        return $this->belongsTo(parkingslot::class,'Slot_number_Id','id');
+    }
+    public function vehicalType()
+    {
+        return $this->belongsTo(VehicalType::class,'vehical_type_id','id');
     }
 }

@@ -35,7 +35,7 @@
      
       <td>
         <div>
-        <a href=""  type='table' class="btn btn-info">Edit</a>
+        <a href="{{route('vehical.parkingslot.edit', $slot->id)}}"  type='table' class="btn btn-info">Edit</a>
         <a class="btn btn-danger" href="{{route('vehical.parkingslot.delete', $slot->id)}}">Delete</a>
         </div>
       </td>

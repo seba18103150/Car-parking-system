@@ -14,11 +14,11 @@
     </tr>
   </thead>
   <tbody>
-    @foreach ($vehicaltypes as $vehicaltype)
+    @foreach ($vehicaltypes as $key=>$vehicaltype)
     
     <tr>
       
-      <td>{{$vehicaltype->id}}</td>
+      <td>{{$key+1}}</td>
       <td>{{$vehicaltype->vehical_type}}</td>
       
     </tr>
