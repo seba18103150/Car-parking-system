@@ -159,6 +159,8 @@ class VehicalController extends Controller
         'slot'));
         }
     }
+
+
  public function parkingoutupdate(Request $request,$id)
  {
     $parckingVehical=ParckingVehical::find($id);
@@ -182,11 +184,20 @@ public function newparking(){
     $parckingVehicals = ParckingVehical::where('out','=',null)->get();
     return view('admin.layouts.newparking',compact('parckingVehicals'));
 }
+
+
+//parking checkout
 public function checkout(Request $request)
    { 
     
 
     //    dd($request->all());
+
+    $parking=ParckingVehical::find($request->parking_id);
+
+    $parking->update([
+'out'=>now()
+    ]);
 
       Checkout::create([
         'slot_price'=>$request->slot_price,
@@ -194,6 +205,7 @@ public function checkout(Request $request)
         'charge'=>$request->total_charge,
         'paymenttype'=>$request->type,
         'remarks'=>$request->Remarks,
+        'slot_name'=>$request->slot_name,
         
     ]);
     return redirect()->back()->with('msg','payment succesfully');

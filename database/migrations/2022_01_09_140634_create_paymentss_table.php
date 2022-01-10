@@ -20,7 +20,7 @@ class CreatePaymentssTable extends Migration
             $table->integer('charge');
             $table->string('paymenttype');
             $table->string('remarks');
-            // $table->string('slot_name');
+            $table->string('slot_name');
 
 
 
