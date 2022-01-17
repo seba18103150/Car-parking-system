@@ -60,4 +60,9 @@ Route::post('/vehical/parkingout form',[VehicalController::class,'checkout'])->n
 
 
 
+//report
+ Route::get('/parkingslot/new/parkingreport',[VehicalController::class,'report'])->name('vehical.parking.report');
+
+
+//  Route::get('/parkingslot',[ProductController::class,'productSearch'])->name('vehical.parkingslot.search');
 

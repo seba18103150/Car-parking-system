@@ -8,6 +8,8 @@ use App\Models\Parkingslot;
 use Illuminate\Support\Carbon;
 use App\Models\VehicalType;
 use App\Models\checkout;
+use App\Models\Report;
+
 
 
 class VehicalController extends Controller
@@ -186,6 +188,8 @@ public function newparking(){
 }
 
 
+
+
 //parking checkout
 public function checkout(Request $request)
    { 
@@ -211,6 +215,16 @@ public function checkout(Request $request)
     return redirect()->back()->with('msg','payment succesfully');
    }
 
+
+
+//report 17 jan
+public function report(){
+    $parckingVehicals = ParckingVehical::where('out','=',null)->get();
+
+    $parking=Checkout::all();
+
+    return view('admin.layouts.report',compact('parckingVehicals','parking'));
 }
 
 
+}

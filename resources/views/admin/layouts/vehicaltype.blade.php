@@ -5,10 +5,10 @@
 <h1 class="mt-4">Parking</h1>
 
 <!-- <p><button type="button" class="btn btn-primary btn-sm">Add vehical</button></p> -->
-<p><a href="{{route('vehical.addvehical')}}"  type='table' class="btn btn-success">Add vehical</a></p>
 <table class="table">
   <thead>
-    <tr>
+    <tr><p><a href="{{route('vehical.addvehical')}}"  type='table' class="btn btn-success">Add vehical</a></p>
+
       <th scope="col">Id</th>
       <th scope="col">Vehical_type</th>
       <th scope="col">Entry_time</th>
@@ -31,7 +31,8 @@
       <td>{{$parckingVehical->driver_phone_number}}</td>
       <td>{{optional($parckingVehical->parkingslot)->name}}</td>
       <td>{{$parckingVehical->out}}</td>
-      <td>        <a href="{{route('vehical.parking.out',$parckingVehical->id)}}"  type='table' class="btn btn-success">Checkout</a>
+      <td>       
+         <a href="{{route('vehical.parking.out',$parckingVehical->id)}}"  type='table' class="btn btn-success">Checkout</a>
       <a class="btn btn-info" href="{{route('vehical.parking.delete', $parckingVehical->id)}}">Delete</a>
 
 </td>
