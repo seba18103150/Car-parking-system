@@ -219,11 +219,11 @@ public function checkout(Request $request)
 
 //report 17 jan
 public function report(){
-    $parckingVehicals = ParckingVehical::where('out','=',null)->get();
+    // $parckingVehicals = ParckingVehical::where('out','=',null)->get();
 
-    $parking=Checkout::all();
+    $reportData=Checkout::all();
 
-    return view('admin.layouts.report',compact('parckingVehicals','parking'));
+    return view('admin.layouts.report',compact('reportData'));
 }
 
 
@@ -242,8 +242,6 @@ $reportData=Checkout::whereDate('created_at','>=',$fromDate)
 
 return view('admin.layouts.report',compact('reportData'));
 
-//    $parckingVehicals = ParckingVehical::where('out','=',null)->get();
-//    return view('vehical.ckeckout.payment',compact('paymentss'));
 }
 
 }
