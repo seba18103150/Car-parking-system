@@ -5,7 +5,13 @@
 
 
 <form action="{{route('vehical.add')}}" method="post">
+
   @csrf
+
+  <div class="mb-5">
+
+  </div>
+
   <div class="mb-3">
   <select class="form-select" name="vehical_type_id" aria-label="Default select example">
   <option selected disabled>Selected vehical type</option>

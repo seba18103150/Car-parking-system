@@ -2,15 +2,36 @@
 
 @section('content')
 
+<form action="{{route('vehical.report.search')}}" method="get">
 
 
 <h1 class="mt-4">Report</h1>
 
-<div id="divToPrint">
        
-    <input class="btn btn-primary" type="button" onClick="PrintDiv('divToPrint');" value="Print">
+
+    <div class="mb-8">
+    <label for="exampleInputPassword1" class="form-label">Start_time</label>
+    <input name="Start_time" type="date" class="form-control" id="exampleInputPassword1">
+  </div>
+
+  <div class="mb-8">
+    <label for="exampleInputPassword1" class="form-label">End_time</label>
+    <input name="End_time" type="date" class="form-control" id="exampleInputPassword1">
+  </div>
+
+  <!-- <tr><p><a href="{{route('vehical.addvehical')}}"  type='table' class="btn btn-success">search</a></p> -->
 
 
+
+<!-- <p><a href="{{route('vehical.report.search')}}"  type='table' class="btn btn-success">search</a></p> -->
+<button type="submit" class="btn btn-primary">search</button>
+
+</div>
+<p style="text-align:right;" >
+
+<input class="btn btn-primary" type="button" onClick="PrintDiv('divToPrint');" value="Print">
+</p>
+<div id="divToPrint">
 
 <table class="table">
   <thead>
@@ -25,7 +46,7 @@
     </tr>
   </thead>
   <tbody>
-    @foreach ($parking as $key=>$parcking)
+    @foreach ($reportData as $key=>$parcking)
     <tr>
       
       <td>{{$key+1}}</td>
@@ -42,8 +63,9 @@
     </tr>
     @endforeach
   </tbody>
-</table>
 
+</table>
+</div>
 
 <script language="javascript">
     function PrintDiv(divName) {
@@ -54,5 +76,7 @@
         document.body.innerHTML = originalContents;
     }
 </script>
+</form>
+
 
 @endsection

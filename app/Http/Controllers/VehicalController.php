@@ -7,7 +7,7 @@ use App\Models\ParckingVehical;
 use App\Models\Parkingslot;
 use Illuminate\Support\Carbon;
 use App\Models\VehicalType;
-use App\Models\checkout;
+use App\Models\Checkout;
 use App\Models\Report;
 
 
@@ -226,5 +226,24 @@ public function report(){
     return view('admin.layouts.report',compact('parckingVehicals','parking'));
 }
 
+
+public function Search(Request $request){
+
+//    dd($request->all());
+
+   $fromDate=$request->Start_time;
+   $toDate=$request->End_time;
+
+$reportData=Checkout::whereDate('created_at','>=',$fromDate)
+->whereDate('created_at','<=',$toDate)
+->get();
+
+//dd($reportData);
+
+return view('admin.layouts.report',compact('reportData'));
+
+//    $parckingVehicals = ParckingVehical::where('out','=',null)->get();
+//    return view('vehical.ckeckout.payment',compact('paymentss'));
+}
 
 }
