@@ -2,7 +2,11 @@
 
 @section('content')
 
-
+@if(session()->has('msg'))
+    <div class="alert alert-success">
+        {{ session()->get('msg') }}
+    </div>
+@endif
 
 <form action="{{route('vehical.add')}}" method="post">
 
@@ -30,7 +34,7 @@
   </div>
   <div class="mb-3">
     <label for="exampleInputPassword1" class="form-label">driver_phone_number</label>
-    <input name="driver_phone_number" type="integer" class="form-control" id="exampleInputPassword1">
+    <input required name="driver_phone_number" type="integer" class="form-control" id="exampleInputPassword1">
   </div>
 
   <div class="mb-3">

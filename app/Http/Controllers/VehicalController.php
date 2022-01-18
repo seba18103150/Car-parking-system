@@ -32,16 +32,39 @@ class VehicalController extends Controller
  
     public function add(Request $request){
         // dd($request->all());
-        ParckingVehical::create([
-            'vehical_type_id'=>$request->vehical_type_id,
-            'Entry_time'=>$request->Entry_time,
-            'car_number'=>$request->car_number,
-            'driver_phone_number'=>$request->driver_phone_number,
-            'Slot_number_id'=>$request->slot_number_id,
-            'out'=>$request->out,
-            'In'=>$current_date_time = Carbon::now(),
+            $request->validate([
+                'driver_phone_number'=>'required|numeric|digits:11',
+            ]);
+    
+        
+
+        $ifout=  Parkingslot::where('id',$request->slot_number_id)->where('Status','!=','Active')->first();
+        Parkingslot::where('id',$request->slot_number_id)->update([
+            'Status'=>"Active"
         ]);
-        return redirect()->back()->with('msg','created succesfully');
+        $ifAvailable=  Parkingslot::where('id',$request->slot_number_id)->where('Status','!=','booked')->first();
+        if($ifAvailable)
+        {
+            ParckingVehical::create([
+                'vehical_type_id'=>$request->vehical_type_id,
+                'Entry_time'=>$request->Entry_time,
+                'car_number'=>$request->car_number,
+                'driver_phone_number'=>$request->driver_phone_number,
+                'Slot_number_id'=>$request->slot_number_id,
+                'out'=>$request->out,
+                'In'=>$current_date_time = Carbon::now(),
+            ]);
+            
+    //status book
+            Parkingslot::where('id',$request->slot_number_id)->update([
+                'Status'=>"booked"
+            ]);
+    
+            return redirect()->back()->with('msg','created succesfully');
+        }
+      
+        return redirect()->back()->with('msg','Already Booked.');
+       
     }
 
 
@@ -96,6 +119,8 @@ class VehicalController extends Controller
         return view('admin.layouts.parkingslot',compact('slots'));
   }
 
+
+//add slot
         public function addparkingslots(Request $request)
         {
 
@@ -141,8 +166,28 @@ class VehicalController extends Controller
 
      
     }
+
+
+
+
+    //dashboard dddddddddddddddesign
+
     public function dashboard(){
-        return view('admin.layouts.dashboarddesign');
+        
+        $park = ParckingVehical::where('out','=',null)->count();
+        $parking =parkingslot::count();
+
+
+        $freeslot = $parking-$park;
+
+        $parkstatus = parkingslot::where('Status','=','inactive')->count();
+
+        
+
+        // dd($park);
+        return view('admin.layouts.dashboarddesign',compact('park','parking','freeslot','parkstatus'));
+
+       
     }
 
     public function parkingout($id){
@@ -163,14 +208,19 @@ class VehicalController extends Controller
     }
 
 
+// parkingoutupdate
+
  public function parkingoutupdate(Request $request,$id)
  {
+     //dd($id);
     $parckingVehical=ParckingVehical::find($id);
     if($parckingVehical){
         $parckingVehical->update([
             'out'=>$request->out,
+            //'status'=>'active'
             
         ]);
+        
            return redirect()->back()->with('msg','update done');
     }  
     
@@ -180,6 +230,7 @@ class VehicalController extends Controller
     ParckingVehical::find($id)->delete();
     return redirect()->back()->with('success', 'Delete done');
 }
+
 //new parking
 public function newparking(){
 
@@ -197,11 +248,17 @@ public function checkout(Request $request)
 
     //    dd($request->all());
 
-    $parking=ParckingVehical::find($request->parking_id);
 
-    $parking->update([
-'out'=>now()
+//parking out status change
+
+    $parking=ParckingVehical::find($request->parking_id);
+    // dd($parking->Slot_number_Id);
+
+    Parkingslot::where('id',$parking->Slot_number_Id)->update([
+        'Status'=>'available'
     ]);
+
+    $parking->update(['out'=>now()]);
 
       Checkout::create([
         'slot_price'=>$request->slot_price,
