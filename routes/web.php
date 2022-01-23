@@ -16,11 +16,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+
+
+// Route::group(['prefix'=>'/admin'],function(){
+
+    Route::get ('/login',[AdminController::class,'login'])->name('admin.login');
+    Route::post ('/dologin',[AdminController::class,'dologin'])->name('admin.dologin');
+
+Route::group (['middleware'=>['auth','admin']],function () {
+    // Route::get('/',function () {
+    //     return view('admin.layouts.dashboarddesign');
+    // })->name('admin.dashboard');
+
+Route::get ('/logout',[AdminController::class,'logout'])->name('admin.logout');
+
+
+//website
 Route::get('/admin',[AdminController::class,'test']);
 Route::get('admin/vehical',[VehicalController::class,'vehical'])->name('admin.vehical');
+// Route::get('admin/vehical/login',[AdminController::class,'login'])->name('admin.login');
+
 
 Route::get('/admin/addvehical',[VehicalController::class,'addvehical'])->name('vehical.addvehical');
 Route::post('/vehical/add',[VehicalController::class,'add'])->name('vehical.add');
@@ -46,7 +61,7 @@ Route::post('/vehical/parkingslots',[VehicalController::class,'addparkingslots']
 Route::get('/parkingslot/edit/{id}',[VehicalController::class,'parkingslotedit'])->name('vehical.parkingslot.edit');
 Route::PUT('/parkingslot/update/{id}',[VehicalController::class,'parkingslotupdate'])->name('vehical.parkingslot.update');
 
-Route::get('/dashboard',[VehicalController::class,'dashboard'])->name('vehical.dashboard');
+Route::get('/',[VehicalController::class,'dashboard'])->name('vehical.dashboard');
 //checkout
 Route::get('/parkingslot/out/{id}',[VehicalController::class,'parkingout'])->name('vehical.parking.out');
 Route::PUT('/parkingout/update/{id}',[VehicalController::class,'parkingoutupdate'])->name('vehical.parkingout.update');
@@ -66,3 +81,4 @@ Route::post('/vehical/parkingout form',[VehicalController::class,'checkout'])->n
 
   Route::get('/parkingslot/new/parkingreport/search',[VehicalController::class,'Search'])->name('vehical.report.search');
 
+});

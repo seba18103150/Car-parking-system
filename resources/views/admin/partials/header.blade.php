@@ -35,6 +35,10 @@
       <li class="nav-item d-none d-sm-inline-block">
         <a href="/Admin/contact" type='text' class="btn btn-primary">Contact</a>
       </li>
+
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="{{route('admin.logout')}}" type='text' class="btn btn-primary">logout</a>
+      </li>
       <td>
           <!-- <li class="nav-item d-none d-sm-inline-block">
           <a href="/Admin/create"  type='table' class="btn btn-light">create post</a>

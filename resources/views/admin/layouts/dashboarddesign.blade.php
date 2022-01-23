@@ -31,8 +31,6 @@
 </div>
 
 
-
-
 <div class="col-lg-4">
 <div class="card" style="width: 18rem; background-color: #add100;">
   <div class="card-body">

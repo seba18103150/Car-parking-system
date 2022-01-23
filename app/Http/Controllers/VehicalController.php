@@ -24,7 +24,8 @@ class VehicalController extends Controller
     
     public function addvehical(){
 
-        $slots = parkingslot::all();
+        $slots = parkingslot::where('Status','!=','booked')->get();
+        
        $vehical_type = VehicalType::all();
         return view('admin.layouts.addvehical',compact('slots','vehical_type')); 
     }
@@ -35,8 +36,7 @@ class VehicalController extends Controller
             $request->validate([
                 'driver_phone_number'=>'required|numeric|digits:11',
             ]);
-    
-        
+     
 
         $ifout=  Parkingslot::where('id',$request->slot_number_id)->where('Status','!=','Active')->first();
         Parkingslot::where('id',$request->slot_number_id)->update([
@@ -96,19 +96,7 @@ class VehicalController extends Controller
     }
 
 
-    // public function update(Request $request,$id){
-    //     // dd($request->all());
-    //    $ParkingVehicale = ParckingVehical::find($id);
-    //    $ParkingVehicale->update([
-    //         'vehical_name'=>$request->name,
-    //         'duration'=>$request->duration,
-    //         'owner'=>$request->vehical_owner,
-    //         'driver'=>$request->driverr,
-    //         'out'=>$current_date_time = Carbon::now()->toDateTimeString(),
-    //     ]);
-    //     return redirect()->back();
-   // }
-
+   //select slot
    public function selectslot(){
        return view('admin.layouts.selectslot');
    }
@@ -167,27 +155,20 @@ class VehicalController extends Controller
      
     }
 
-
-
-
-    //dashboard dddddddddddddddesign
+    //dashboard design
 
     public function dashboard(){
         
         $park = ParckingVehical::where('out','=',null)->count();
         $parking =parkingslot::count();
 
-
         $freeslot = $parking-$park;
 
         $parkstatus = parkingslot::where('Status','=','inactive')->count();
 
-        
-
         // dd($park);
         return view('admin.layouts.dashboarddesign',compact('park','parking','freeslot','parkstatus'));
 
-       
     }
 
     public function parkingout($id){
@@ -197,10 +178,7 @@ class VehicalController extends Controller
         $hourdiff = abs((int)round((strtotime($parckingVehical->Entry_time) - strtotime(now()))/3600));
         // dd($hourdiff);
         $charge=$hourdiff*$slot->price;
-
-
-
-        
+  
         if($parckingVehical){
             return view('admin.layouts.parkingout',compact('parckingVehical','charge','hourdiff',
         'slot'));
@@ -240,14 +218,10 @@ public function newparking(){
 
 
 
-
 //parking checkout
 public function checkout(Request $request)
    { 
-    
-
     //    dd($request->all());
-
 
 //parking out status change
 
@@ -282,7 +256,6 @@ public function report(){
 
     return view('admin.layouts.report',compact('reportData'));
 }
-
 
 public function Search(Request $request){
 

@@ -70,6 +70,14 @@
                             </a>
                         </div>
 
+                        <div class="nav">
+                             <!-- <div class="sb-sidenav-menu-heading"></div> -->
+                            <a class="nav-link" href="{{route('vehical.parking.report')}}"> 
+                                <div class="sb-nav-link-icon"><i class="fas fa-car-side"></i></div>
+                              User
+                            </a>
+                        </div>
+
 
 
                         
