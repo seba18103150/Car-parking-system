@@ -61,8 +61,13 @@ Route::post('/vehical/parkingslots',[VehicalController::class,'addparkingslots']
 Route::get('/parkingslot/edit/{id}',[VehicalController::class,'parkingslotedit'])->name('vehical.parkingslot.edit');
 Route::PUT('/parkingslot/update/{id}',[VehicalController::class,'parkingslotupdate'])->name('vehical.parkingslot.update');
 
+
+//dashboard
 Route::get('/',[VehicalController::class,'dashboard'])->name('vehical.dashboard');
+
+
 //checkout
+
 Route::get('/parkingslot/out/{id}',[VehicalController::class,'parkingout'])->name('vehical.parking.out');
 Route::PUT('/parkingout/update/{id}',[VehicalController::class,'parkingoutupdate'])->name('vehical.parkingout.update');
 

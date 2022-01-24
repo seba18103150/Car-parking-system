@@ -32,15 +32,18 @@
 <input class="btn btn-primary" type="button" onClick="PrintDiv('divToPrint');" value="Print">
 </p>
 <div id="divToPrint">
+<!-- <P>Car parking list</P> -->
 
+
+<h1> Payment list of Parking </h1>
 <table class="table">
   <thead>
     <tr>
       <th scope="col">Id</th>
-      <th scope="col">slot_price</th>
-      <th scope="col">Total_time</th>
-      <th scope="col">Charge</th>
-      <th scope="col">paymenttype</th>
+      <th scope="col">Slot_price(BDT)</th>
+      <th scope="col">Total_time(Hour)</th>
+      <th scope="col">Charge(BDT)</th>
+      <th scope="col">Paymenttype</th>
       <th scope="col">Slot_name</th>
      
     </tr>

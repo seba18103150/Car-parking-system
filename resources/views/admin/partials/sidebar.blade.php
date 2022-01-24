@@ -35,7 +35,7 @@
                              <!-- <div class="sb-sidenav-menu-heading"></div> -->
                             <a class="nav-link" href="{{route('vehical.parkingslot')}}"> 
                                 <div class="sb-nav-link-icon"><i class="fas fa-car"></i></div>
-                               parking slot
+                               Parking Slot
                             </a>
                         </div>
 
@@ -43,7 +43,7 @@
                              <!-- <div class="sb-sidenav-menu-heading"></div> -->
                             <a class="nav-link" href="{{route('admin.vehical.type')}}"> 
                                 <div class="sb-nav-link-icon"><i class="fas fa-car-side"></i></div>
-                                vehical type
+                                Vehical Type
                             </a>
                         </div>
 
@@ -51,14 +51,14 @@
                              <!-- <div class="sb-sidenav-menu-heading"></div> -->
                             <a class="nav-link" href="{{route('admin.vehical')}}"> 
                                 <div class="sb-nav-link-icon"><i class="fas fa-car-side"></i></div>
-                               parking 
+                               Parking 
                             </a>
                         </div>
                         <div class="nav">
                              <!-- <div class="sb-sidenav-menu-heading"></div> -->
                             <a class="nav-link" href="{{route('vehical.parking.new')}}"> 
                                 <div class="sb-nav-link-icon"><i class="fas fa-car-side"></i></div>
-                              New parking
+                              Existing Parking
                             </a>
                         </div>
 

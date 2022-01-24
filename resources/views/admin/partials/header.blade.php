@@ -3,7 +3,7 @@
 
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="index.html"><h2>Carparking mangement system</h2></a>
+            <a class="navbar-brand ps-3" href="index.html"><h2>Car Parking Mangement System</h2></a>
             <!-- Sidebar Toggle-->
             
 
@@ -29,12 +29,12 @@
      
 
     
-      <li class="nav-item d-none d-sm-inline-block">
+      <!-- <li class="nav-item d-none d-sm-inline-block">
         <a href="index3.html" class="nav-link">Home</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="/Admin/contact" type='text' class="btn btn-primary">Contact</a>
-      </li>
+      </li> -->
 
       <li class="nav-item d-none d-sm-inline-block">
         <a href="{{route('admin.logout')}}" type='text' class="btn btn-primary">logout</a>
