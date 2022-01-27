@@ -18,17 +18,27 @@
             <div id="layoutSidenav_nav">
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
+
+                    @if(auth()->user()->role=='admin')
+
+                    <!-- Admin view -->
+                    
                         <div class="nav">
                             <!-- <div class="sb-sidenav-menu-heading">Core</div> -->
                             <!-- <a class="nav-link" href="{{url('/Admin')}}"> -->
 
                             <!-- <div class="sb-sidenav-menu-heading"></div> -->
+
+
+                  
+
                             <a class="nav-link" href="{{route('vehical.dashboard')}}">
 
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
                             </a>
                         </div>
+                         
                         
                         
                         <div class="nav">
@@ -38,7 +48,6 @@
                                Parking Slot
                             </a>
                         </div>
-
                         <div class="nav">
                              <!-- <div class="sb-sidenav-menu-heading"></div> -->
                             <a class="nav-link" href="{{route('admin.vehical.type')}}"> 
@@ -72,11 +81,69 @@
 
                         <div class="nav">
                              <!-- <div class="sb-sidenav-menu-heading"></div> -->
-                            <a class="nav-link" href="{{route('vehical.parking.report')}}"> 
+                            <a class="nav-link" href="{{route('vehical.user')}}"> 
                                 <div class="sb-nav-link-icon"><i class="fas fa-car-side"></i></div>
                               User
                             </a>
                         </div>
+
+
+                      @else
+                      
+                      <!-- manager view  -->
+
+                      <div class="nav">
+                            <!-- <div class="sb-sidenav-menu-heading">Core</div> -->
+                            <!-- <a class="nav-link" href="{{url('/Admin')}}"> -->
+
+                            <!-- <div class="sb-sidenav-menu-heading"></div> -->
+
+
+                  
+
+                            <a class="nav-link" href="{{route('vehical.dashboard')}}">
+
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                Dashboard
+                            </a>
+                        </div>
+                         
+                        
+                        
+                        <div class="nav">
+                             <!-- <div class="sb-sidenav-menu-heading"></div> -->
+                            <a class="nav-link" href="{{route('vehical.parkingslot')}}"> 
+                                <div class="sb-nav-link-icon"><i class="fas fa-car"></i></div>
+                               Parking Slot
+                            </a>
+                        </div>
+                        <div class="nav">
+                             <!-- <div class="sb-sidenav-menu-heading"></div> -->
+                            <a class="nav-link" href="{{route('admin.vehical.type')}}"> 
+                                <div class="sb-nav-link-icon"><i class="fas fa-car-side"></i></div>
+                                Vehical Type
+                            </a>
+                        </div>
+
+                        <div class="nav">
+                             <!-- <div class="sb-sidenav-menu-heading"></div> -->
+                            <a class="nav-link" href="{{route('admin.vehical')}}"> 
+                                <div class="sb-nav-link-icon"><i class="fas fa-car-side"></i></div>
+                               Parking 
+                            </a>
+                        </div>
+                        <div class="nav">
+                             <!-- <div class="sb-sidenav-menu-heading"></div> -->
+                            <a class="nav-link" href="{{route('vehical.parking.new')}}"> 
+                                <div class="sb-nav-link-icon"><i class="fas fa-car-side"></i></div>
+                              Existing Parking
+                            </a>
+                        </div>
+
+
+                        @endif
+
+
 
 
 

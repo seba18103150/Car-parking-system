@@ -9,6 +9,7 @@ use Illuminate\Support\Carbon;
 use App\Models\VehicalType;
 use App\Models\Checkout;
 use App\Models\Report;
+use App\Models\User;
 
 
 
@@ -24,7 +25,7 @@ class VehicalController extends Controller
     
     public function addvehical(){
 
-        $slots = parkingslot::where('Status','!=','booked')->get();
+        $slots = parkingslot::where('Status','!=','booked')->get() ;
         
        $vehical_type = VehicalType::all();
         return view('admin.layouts.addvehical',compact('slots','vehical_type')); 
@@ -244,6 +245,15 @@ public function checkout(Request $request)
         
     ]);
     return redirect()->back()->with('msg','payment succesfully');
+   }
+
+
+
+   //user
+
+   public function user(){
+       $users=User::all();
+       return view ('admin.layouts.user',compact('users'));
    }
 
 

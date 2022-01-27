@@ -63,8 +63,8 @@ Route::PUT('/parkingslot/update/{id}',[VehicalController::class,'parkingslotupda
 
 
 //dashboard
-Route::get('/',[VehicalController::class,'dashboard'])->name('vehical.dashboard');
 
+Route::get('/',[VehicalController::class,'dashboard'])->name('vehical.dashboard');
 
 //checkout
 
@@ -85,5 +85,10 @@ Route::post('/vehical/parkingout form',[VehicalController::class,'checkout'])->n
 
 
   Route::get('/parkingslot/new/parkingreport/search',[VehicalController::class,'Search'])->name('vehical.report.search');
+
+
+//user
+Route::get('/user',[VehicalController::class,'user'])->name('vehical.user');
+
 
 });

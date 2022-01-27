@@ -24,6 +24,7 @@ class AdminController extends Controller
             // dd($request->all());
             $userInfo=$request->except('_token');
             if(Auth::attempt($userInfo)){
+                // dd('true');
              
                 return redirect()->route('vehical.dashboard')->with('message','login succesfull');
             }
