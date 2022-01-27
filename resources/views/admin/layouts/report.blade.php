@@ -35,7 +35,7 @@
 <!-- <P>Car parking list</P> -->
 
 
-<h1> Payment list of Parking </h1>
+<h1> Payment list of Parking. </h1>
 <table class="table">
   <thead>
     <tr>
