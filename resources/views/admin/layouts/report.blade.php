@@ -45,6 +45,8 @@
       <th scope="col">Charge(BDT)</th>
       <th scope="col">Paymenttype</th>
       <th scope="col">Slot_name</th>
+      <th scope="col">action</th>
+
      
     </tr>
   </thead>
@@ -58,7 +60,10 @@
       <td>{{$parcking->charge}}</td>
       <td>{{$parcking->paymenttype}}</td>
       <td>{{$parcking->slot_name}}</td>
-
+      <td>{{$parcking->action}}</td>
+      <td>
+        <a href="{{route('vehicle.parking.view', $parcking->id)}}" class="btn btn-primary">View</a>
+      </td>
       <td>       
 
 </td>

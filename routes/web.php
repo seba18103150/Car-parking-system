@@ -76,12 +76,14 @@ Route::get('/parking/delete/{id}',[VehicalController::class,'parkingDelete'])->n
 
 Route::get('/parkingslot/new/parking',[VehicalController::class,'newparking'])->name('vehical.parking.new');
 
-Route::post('/vehical/parkingout form',[VehicalController::class,'checkout'])->name('vehical.ckeckout.payment');
+Route::post('/vehical/parkingout_form',[VehicalController::class,'checkout'])->name('vehical.ckeckout.payment');
 
 
 
 //report
  Route::get('/parkingslot/new/parkingreport',[VehicalController::class,'report'])->name('vehical.parking.report');
+ //PARKING VIEW
+ Route::get('/parkingslot-view/{id}',[VehicalController::class, 'parkingView'])->name('vehicle.parking.view');
 
 
   Route::get('/parkingslot/new/parkingreport/search',[VehicalController::class,'Search'])->name('vehical.report.search');
@@ -89,6 +91,8 @@ Route::post('/vehical/parkingout form',[VehicalController::class,'checkout'])->n
 
 //user
 Route::get('/user',[VehicalController::class,'user'])->name('vehical.user');
+
+
 
 
 });

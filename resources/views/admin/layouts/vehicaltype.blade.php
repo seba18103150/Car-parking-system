@@ -4,6 +4,21 @@
 
 <h1 class="mt-4">Parking</h1>
 
+
+@if(session()->has('message'))
+    <div class="alert alert-success">
+        {{ session()->get('message') }}
+    </div>
+@endif
+
+@if($errors->any())
+
+@foreach($errors->all() as $er)
+<p class="alert alert-danger">{{$er}}</p>
+@endforeach
+
+@endif
+
 <!-- <p><button type="button" class="btn btn-primary btn-sm">Add vehical</button></p> -->
 <table class="table">
   <thead>
@@ -33,7 +48,9 @@
       <td>{{$parckingVehical->out}}</td>
       <td>       
          <a href="{{route('vehical.parking.out',$parckingVehical->id)}}"  type='table' class="btn btn-success">Checkout</a>
-      <a class="btn btn-info" href="{{route('vehical.parking.delete', $parckingVehical->id)}}">Delete</a>
+         @if(auth()->user()->role == 'admin')
+          <a class="btn btn-info" href="{{route('vehical.parking.delete', $parckingVehical->id)}}">Delete</a>
+         @endif
 
 </td>
       

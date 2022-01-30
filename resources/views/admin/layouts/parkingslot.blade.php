@@ -4,8 +4,18 @@
 
 <h1 class="mt-4">parking slot</h1>
 
-@if(session()->has('success'))
-<p class="alert alert-success">{{session()->get('success')}}</p>
+@if(session()->has('message'))
+    <div class="alert alert-success">
+        {{ session()->get('message') }}
+    </div>
+@endif
+
+@if($errors->any())
+
+@foreach($errors->all() as $er)
+<p class="alert alert-danger">{{$er}}</p>
+@endforeach
+
 @endif
 
 <!-- <p><button type="button" class="btn btn-primary btn-sm">Add vehical</button></p> -->
@@ -15,7 +25,7 @@
     <tr>
       <th scope="col">Id</th>
       <th scope="col">name</th>
-      <th scope="col">description</th>
+      <!-- <th scope="col">description</th> -->
       <th scope="col">price</th>
       <th scope="col">Status</th>
       <th scope="col">action</th>
@@ -28,7 +38,7 @@
       
       <td>{{$key+1}}</td>
       <td>{{$slot->name}}</td>
-      <td>{{$slot->description}}</td>
+      <!-- <td>{{$slot->description}}</td> -->
       <td>{{$slot->price}}</td>
       <td>{{$slot->Status}}</td>
       

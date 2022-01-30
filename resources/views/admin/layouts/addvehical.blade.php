@@ -2,11 +2,21 @@
 
 @section('content')
 
-@if(session()->has('msg'))
+@if(session()->has('message'))
     <div class="alert alert-success">
-        {{ session()->get('msg') }}
+        {{ session()->get('message') }}
     </div>
 @endif
+
+@if($errors->any())
+
+@foreach($errors->all() as $er)
+<p class="alert alert-danger">{{$er}}</p>
+@endforeach
+
+@endif
+
+
 
 <form action="{{route('vehical.add')}}" method="post">
 
@@ -24,9 +34,12 @@
   @endforeach
 </select>
   </div>
+  @php
+  $current = date("Y-m-d H-i-s");
+  @endphp
   <div class="mb-3">
     <label for="exampleInputPassword1" class="form-label">Entry_time</label>
-    <input name="Entry_time" type="datetime-local" class="form-control" id="exampleInputPassword1">
+    <input name="Entry_time" value="{{$current}}" readonly type="text" class="form-control" id="exampleInputPassword1">
   </div>
   <div class="mb-3">
     <label for="exampleInputPassword1" class="form-label">car_number</label>

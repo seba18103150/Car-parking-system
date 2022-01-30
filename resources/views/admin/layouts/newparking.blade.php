@@ -34,7 +34,10 @@
       <td>{{$parckingVehical->out}}</td>
       <td>    
               <a href="{{route('vehical.parking.out',$parckingVehical->id)}}"  type='table' class="btn btn-success">Checkout</a>
-      <a class="btn btn-info" href="{{route('vehical.parking.delete', $parckingVehical->id)}}">Delete</a>
+      <!-- <a class="btn btn-info" href="{{route('vehical.parking.delete', $parckingVehical->id)}}">Delete</a> -->
+      @if(auth()->user()->role == 'admin')
+          <a class="btn btn-info" href="{{route('vehical.parking.delete', $parckingVehical->id)}}">Delete</a>
+         @endif
 
 </td>
       

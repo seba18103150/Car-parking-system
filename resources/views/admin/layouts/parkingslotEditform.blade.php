@@ -11,17 +11,21 @@
 <form action="{{route('vehical.parkingslot.update',$slot->id)}}" method="post">
   @csrf
   @method('put')
-  
+  <div>
+
+
+
+  </div>
 
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">name</label>
     <input value="{{$slot->name}}" name="name" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
   
   </div>
-  <div class="mb-3">
+  <!-- <div class="mb-3">
     <label for="exampleInputPassword1" class="form-label">description</label>
     <input value="{{$slot->description}}" name="description" type="text" class="form-control" id="exampleInputPassword1">
-  </div>
+  </div> -->
   <div class="mb-3">
     <label for="exampleInputPassword1" class="form-label">price</label>
     <input value="{{$slot->price}}" name="price" type="integer" class="form-control" id="exampleInputPassword1">

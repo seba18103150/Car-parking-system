@@ -37,14 +37,21 @@ class VehicalController extends Controller
             $request->validate([
                 'driver_phone_number'=>'required|numeric|digits:11',
             ]);
+
      
 
+
+     //unique:parking_vehicales,car_number
         $ifout=  Parkingslot::where('id',$request->slot_number_id)->where('Status','!=','Active')->first();
         Parkingslot::where('id',$request->slot_number_id)->update([
             'Status'=>"Active"
         ]);
+
+
         $ifAvailable=  Parkingslot::where('id',$request->slot_number_id)->where('Status','!=','booked')->first();
-        if($ifAvailable)
+        $ifAvailablecar=  ParckingVehical::where('car_number',$request->car_number)->where('out',null)->first();
+       
+        if($ifAvailable && empty($ifAvailablecar))
         {
             ParckingVehical::create([
                 'vehical_type_id'=>$request->vehical_type_id,
@@ -55,16 +62,22 @@ class VehicalController extends Controller
                 'out'=>$request->out,
                 'In'=>$current_date_time = Carbon::now(),
             ]);
+
+
             
     //status book
             Parkingslot::where('id',$request->slot_number_id)->update([
                 'Status'=>"booked"
             ]);
     
-            return redirect()->back()->with('msg','created succesfully');
+            return redirect()->back()->with('message','created succesfully');
+        }
+        else
+        {
+            return redirect()->back()->with('message','same car_number exist in the parking ');
         }
       
-        return redirect()->back()->with('msg','Already Booked.');
+        return redirect()->back()->with('error','Already Booked.');
        
     }
 
@@ -113,6 +126,12 @@ class VehicalController extends Controller
         public function addparkingslots(Request $request)
         {
 
+
+
+            $request->validate([
+                'name'=>'required|string|unique:parkingslots,name'
+            ]);
+
             $countSlot = Parkingslot::count('id');
            if( $countSlot < 20){
             Parkingslot::create([
@@ -121,10 +140,10 @@ class VehicalController extends Controller
                 'price'=>$request->price,
                 'Status'=>$request->Status,
             ]);
-            return redirect()->route('vehical.parkingslot');
+            return redirect()->route('vehical.parkingslot')->with('message','created succesfully');
            }else{
               
-            return redirect()->back();  
+            return redirect()->back()->with('message','created succesfully');  
            }
 
            
@@ -179,6 +198,7 @@ class VehicalController extends Controller
         $hourdiff = abs((int)round((strtotime($parckingVehical->Entry_time) - strtotime(now()))/3600));
         // dd($hourdiff);
         $charge=$hourdiff*$slot->price;
+        
   
         if($parckingVehical){
             return view('admin.layouts.parkingout',compact('parckingVehical','charge','hourdiff',
@@ -207,7 +227,7 @@ class VehicalController extends Controller
  //parking delete
  public function parkingDelete($id){
     ParckingVehical::find($id)->delete();
-    return redirect()->back()->with('success', 'Delete done');
+    return redirect()->back()->with('message', 'Delete done');
 }
 
 //new parking
@@ -216,26 +236,32 @@ public function newparking(){
     $parckingVehicals = ParckingVehical::where('out','=',null)->get();
     return view('admin.layouts.newparking',compact('parckingVehicals'));
 }
+//view
+public function parkingView($id)
+{
+    $parking=Checkout::find($id);
+    return view('admin.layouts.parking_view_details', compact('parking'));
+}
 
 
 
 //parking checkout
 public function checkout(Request $request)
    { 
-    //    dd($request->all());
+    //  dd($request->all());
 
 //parking out status change
 
-    $parking=ParckingVehical::find($request->parking_id);
+    $park=ParckingVehical::find($request->parking_id);
     // dd($parking->Slot_number_Id);
 
-    Parkingslot::where('id',$parking->Slot_number_Id)->update([
+    Parkingslot::where('id',$park->Slot_number_Id)->update([
         'Status'=>'available'
     ]);
 
-    $parking->update(['out'=>now()]);
+    $park->update(['out'=>now()]);
 
-      Checkout::create([
+      $parking=Checkout::create([
         'slot_price'=>$request->slot_price,
         'total_time'=>$request->total_time,
         'charge'=>$request->total_charge,
@@ -244,7 +270,9 @@ public function checkout(Request $request)
         'slot_name'=>$request->slot_name,
         
     ]);
-    return redirect()->back()->with('msg','payment succesfully');
+ 
+    
+    return view('admin.layouts.parking_view_details', compact('parking'));
    }
 
 
@@ -262,7 +290,7 @@ public function checkout(Request $request)
 public function report(){
     // $parckingVehicals = ParckingVehical::where('out','=',null)->get();
 
-    $reportData=Checkout::all();
+    $reportData=Checkout::orderBy('id','desc')->get();
 
     return view('admin.layouts.report',compact('reportData'));
 }
@@ -282,6 +310,13 @@ $reportData=Checkout::whereDate('created_at','>=',$fromDate)
 
 return view('admin.layouts.report',compact('reportData'));
 
-}
 
+
+}
+//invoice
+public function invoice(){
+$paymentss=Checkout::all();
+//dd($paymentss);
+return view('admin.layouts.invoice',compact('paymentss'));
+}
 }

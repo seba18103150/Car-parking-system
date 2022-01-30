@@ -17,7 +17,7 @@ class CreatParkingslotsTable extends Migration
         Schema::create('parkingslots', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->integer('price');
             $table->string('Status');
             // $table->datetim('action');

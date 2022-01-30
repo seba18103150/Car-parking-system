@@ -24,7 +24,7 @@
 
 
     <div id="layoutSidenav_content">
-                <main>
+                <main style="margin-top: 25px;">
                     <div class="container-fluid px-4">
 
     <div class="container-fluid">
